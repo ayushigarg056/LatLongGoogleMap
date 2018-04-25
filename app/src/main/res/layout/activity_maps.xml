@@ -1,0 +1,28 @@
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent">
+
+>
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:onClick="onClick"
+        android:text="Search" />
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="440dp"
+    tools:context="com.ayushi.user.mapactivity.MapsActivity"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true"
+
+    />
+</RelativeLayout>
