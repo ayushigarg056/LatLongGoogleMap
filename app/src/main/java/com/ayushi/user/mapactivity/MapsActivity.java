@@ -41,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
@@ -58,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Integer Entity_id;
     String Area, Lat, Lon;
     String url;
-    ArrayList<LatLng> ll;
+    List<LatLng> ll;
     double latitude,longitude;
     Button b1;
     @Override
@@ -142,6 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                        Log.d("onclick", "onResponse: "+response);
 
                         try {
+                            ll=new ArrayList<>();
                             for (int i=0;i<response.getJSONArray("results").length();i++)
                             {
 // String name = response.getJSONArray("nearby_restaurants").getJSONObject(i).getJSONObject("restaurant").getString("name").toString();
@@ -155,7 +157,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 LatLng latlng=new LatLng(latitude,longitude);
                                 ll.add(latlng);
                                 Log.d("kk", "onResponse: "+ll);
+
+
                             }
+                            setmarker(ll);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -174,6 +179,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         RequestQueue requestQueue = Volley.newRequestQueue(MapsActivity.this);
         requestQueue.add(jsonObjectRequest2);
     }
+
+    private void setmarker(List<LatLng> l) {
+
+//        if (addressList != null) {
+//            for (int i = 0; i < addressList.size(); i++) {
+//                LatLng latLng = new LatLng(addressList.get(i).getLatitude(), addressList.get(i).getLongitude());
+//                MarkerOptions markerOptions = new MarkerOptions();
+//                markerOptions.position(latLng);
+//                markerOptions.title(location);
+//                mMap.addMarker(markerOptions);
+//                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+//            }
+            //LatLng latlng=new LatLng();
+        if(l!=null)
+            {
+                for (int i = 0; i < l.size(); i++) {
+                    LatLng latLng = new LatLng(l.get(i).,l.get(i));
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+
+                    mMap.addMarker(markerOptions);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                }
+
+
+             }
+
+    }
+
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         locationRequest = new LocationRequest();

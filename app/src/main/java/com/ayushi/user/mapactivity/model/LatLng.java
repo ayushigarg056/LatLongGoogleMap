@@ -21,4 +21,11 @@ public class LatLng {
         return lon;
     }
 
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
 }
